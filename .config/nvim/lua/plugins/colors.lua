@@ -3,9 +3,9 @@ local function  enable_transparency()
 end
 return {
     {
-	"ellisonleao/gruvbox.nvim",
+	"dylanaraps/wal.vim",
 	config = function()
-	    vim.cmd.colorscheme "gruvbox"
+	    vim.cmd.colorscheme "wal"
 	    enable_transparency()
 	end
     },
