@@ -3,9 +3,9 @@ local function  enable_transparency()
 end
 return {
     {
-	"dylanaraps/wal.vim",
+	"catppuccin/nvim",
 	config = function()
-	    vim.cmd.colorscheme "wal"
+	    vim.cmd.colorscheme "catppuccin-frappe"
 	    enable_transparency()
 	end
     },

@@ -1,85 +1,150 @@
-{
-  "layer": "bot",
-  "spacing": 0,
-  "height": 0,
-  "margin-bottom": 0,
-  "margin-top": 8,
+{ 
+
   "position": "top",
-  "margin-right": 370,
-  "margin-left": 370,
+  "exlusive": "true",
+  "passthrough": "true",
+  "gtk-layer-shell": "true",
+  "margin-top": 10,
+  "margin-left": 10,
+  "margin-right": 10,
+  "height": 41,
   "modules-left": [
-    "hyprland/workspaces",
-    "sway/workspaces"
+    "custom/weather",
+    "cpu",
+    "memory",
+    "disk",
   ],
   "modules-center": [
-    "custom/applauncher"
+    "hyprland/workspaces"
   ],
   "modules-right": [
-    "network",
-    "battery",
+    "hyprland/language",
     "pulseaudio",
-    "tray",
-    "clock"
+    "pulseaudio#microphone",
+    "clock",
+    "separator",
+    "tray"
   ],
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": false,
-    "tooltip": false
-  },
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": false,
-    "tooltip": false
-  },
-  "custom/applauncher": {
-    "format": "///",
-    "on-click": "pgrep wofi >/dev/null 2>&1 && killall wofi || wofi --show drun --location=top -y 10",
-    "tooltip": false
-  },
+
+
   "tray": {
-    "spacing": 10,
-    "tooltip": false
+    "icon-size": 16,
+    "icon-theme": "Papirus",
+    "spacing": 2, 
+  },
+   "custom/spacer": {
+        "format": " ", // Empty space
+        "tooltip": false
+  },
+  "separator": {
+    "format": " | "
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 35,
+    "rewrite": {
+      "": "Harsh"
+    },
+    "separate-outputs": true
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "active": "",
+      "urgent": "",
+      "persistent": "",
+      "focused": "",
+      "default": "",
+
+        },
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": 9,
+      "DP-1": 9
+    }
   },
   "clock": {
-    "format": "󰅐 {:%H:%M}",
-    "tooltip": false
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "<span color='#89b4fa'>󰥔 </span><span color='#cdd6f4'>{:%H:%M | %a %d %b}</span>",
+    "format-alt": "{:%Y-%m-%d}"
   },
-  "network": {
-    "format-wifi": " {bandwidthDownBits}",
-    "format-ethernet": " {bandwidthDownBits}",
-    "format-disconnected": "󰤮 No Network",
-    "interval": 5,
-    "tooltip": false
+
+  "cpu": {
+    "format": "<span color='#89b4fa'>󰍛</span> <span color='#cdd6f4'>{usage}%</span>",
+    "interval": 1,
+    "format-alt-click": "click",
+    "format-alt": "<span color='#00FF00'>{icon0}{icon1}{icon2}{icon3}</span> <span color='#FFFFFF'>{usage:>2}%</span> <span color='#00FF00'>󰍛</span>",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "gnome-system-monitor"
   },
+  "memory": {
+    "interval": 3,
+    "format": "<span color='#f38ba8'> </span> <span color='#cdd6f4'>{used:0.1f}G</span>"
+  },
+   
+
+"custom/weather": {
+    "exec": "~/.config/hypr/scripts/weather.sh",
+    "return-type": "json",
+    "interval": 600,
+    "format": "{text}"
+},
+
+
   "pulseaudio": {
-    "scroll-step": 5,
-    "max-volume": 150,
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon} {volume}%",
-    "format-icons": [
-      "",
-      "",
-      " "
-    ],
-    "nospacing": 1,
-    "format-muted": " ",
-    "on-click": "pavucontrol",
-    "tooltip": false
+    "format": "<span color='#a6e3a1'>{icon} </span><span color='#cdd6f4'>{volume}%</span>",
+    "format-bluetooth": "<span color='#a6e3a1'>{icon}</span>  <span color='#cdd6f4'>{volume}%</span>",
+    "tooltip": false,
+    "format-muted": "<span color='#f38ba8'>󰝟</span>",
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 10%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 10%-",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        "",
+      ]
+    }
   },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󰂄{capacity}%",
-    "format-alt": "{icon} {time}",
-    "format-full": "󱈑 {capacity}%",
-    "format-icons": [
-      "󱊡",
-      "󱊢",
-      "󱊣"
-    ]
-  }
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "<span color='#f38ba8'> </span><span color='#cdd6f4'>{volume}%</span>",
+    "format-source-muted": "",
+    "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-",
+  },
+
+   "hyprland/language": {
+
+  "format": "<span color='#f9e2af'>󰌌</span> <span color='#cdd6f4'>{}</span>",
+
+  "format-ar": "ara",
+
+  "format-en": "eng",
+
+},
+  "disk":{
+	"interval": 3,
+  "path": "/home",
+	"format": "<span color='#a6e3a1'> </span><span color='#cdd6f4'>{free}</span>",
+	"unit": "GB"
+},
 }
