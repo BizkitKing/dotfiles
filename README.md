@@ -6,4 +6,4 @@ Thanks to Lazar Nikolov for making nearly the whole base of my wezterm, diinki f
 Dependencies
 
 sudo pacman -S stow wezterm neovim nautilus wofi ly hyprland hyprshot 
-yay -S swww
+yay -S swww ags-hyprpanel-git
