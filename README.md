@@ -5,5 +5,5 @@ Thanks to Lazar Nikolov for making nearly the whole base of my wezterm, diinki f
 
 Dependencies
 
-sudo pacman -S stow wezterm neovim nautilus wofi ly hyprland hyprshot 
+sudo pacman -S stow wezterm neovim nautilus wofi ly hyprland hyprshot zsh ttf-iosevka-nerd starship zsh-completions zsh-syntax-highlighting
 yay -S swww ags-hyprpanel-git

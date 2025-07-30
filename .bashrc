@@ -16,4 +16,3 @@ export PATH="$PATH:/home/arp/.local/bin" Change this to your user
 # starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init bash)"
-. "$HOME/.cargo/env"

@@ -41,7 +41,6 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 
 
-. "$HOME/.cargo/env"
 
 # variables
 export EDITOR=nvim
