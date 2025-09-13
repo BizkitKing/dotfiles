@@ -33,8 +33,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 #
-
-
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
